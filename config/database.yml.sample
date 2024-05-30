@@ -5,12 +5,12 @@ default: &default
 
 development:
   <<: *default
-  database: template_rails_development
+  database: tdd-miniblog_development
 
 test:
   <<: *default
-  database: template_rails_test
+  database: tdd-miniblog_test
 
 production:
   <<: *default
-  database: template_rails_production
+  database: tdd-miniblog_production

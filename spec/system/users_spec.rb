@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe 'Registrations', type: :system do
+RSpec.describe 'Users', type: :system do
   context '未ログイン時' do
     it 'ログインを押してログインフォームが開くこと' do
-      visit_path root_path
+      visit root_path
       click_on 'ログイン'
       expect(page).to have_current_path new_user_session_path, ignore_query: true
     end

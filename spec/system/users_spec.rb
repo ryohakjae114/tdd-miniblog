@@ -42,12 +42,12 @@ RSpec.describe 'Users', type: :system do
       visit root_path
       click_on '認証情報編集'
       expect(page).to have_current_path edit_user_registration_path, ignore_query: true
-      fill_in 'name', 'tajimax'
-      fill_in 'current_password', '1234512345'
-      click_on '更新'
+      fill_in '名前', with: 'tajimax'
+      fill_in '現在のパスワード', with: '1234512345'
+      click_on 'Update'
 
       visit edit_user_registration_path
-      expect(page).to have_field 'name', with: 'tajimax'
+      expect(page).to have_field '名前', with: 'tajimax'
     end
 
     it 'アカウント削除を押してトップページに戻ること' do

@@ -5,3 +5,6 @@ ja:
     attributes:
       user:
         name: "名前"
+  errors:
+    user:
+      name: "は英数字しか使えません"

@@ -38,7 +38,7 @@ RSpec.describe 'Users', type: :system do
       expect(page).not_to have_button 'ログアウト'
     end
 
-    it '認証情報編集ボタンを押して、認証情報編集フォームから人' do
+    it '認証情報編集ボタンを押して、フォームから認証情報を変更できる' do
       visit root_path
       click_on '認証情報編集'
       expect(page).to have_current_path edit_user_registration_path, ignore_query: true

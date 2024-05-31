@@ -1,26 +1,33 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
+  let!(:user) { create(:user, name: 'hakjae', password: '1234512345', password_confirmation: '1234512345') }
+
   context '未ログイン時' do
-    it 'ログインを押してログインフォームが開くこと' do
+    it 'ログインを押してログインフォームからログインできる' do
       visit root_path
       expect(page).not_to have_link '認証情報編集'
       expect(page).not_to have_button 'ログアウト'
       click_on 'ログイン'
-      expect(page).to have_current_path new_user_session_path, ignore_query: true
+      fill_in '名前', with: 'hakjae'
+      fill_in 'パスワード', with: '1234512345'
+      click_on 'ログイン'
+      expect(page).to have_current_path root_path, ignore_query: true
+      expect(page).to have_content 'ログインしました'
     end
 
     it 'サインアップを押してサインアップフォームが開くこと' do
       visit root_path
       expect(page).not_to have_button 'ログアウト'
       click_on 'サインアップ'
-      expect(page).to have_current_path new_user_registration_path, ignore_query: true
+      fill_in '名前', with: 'hakjae'
+      fill_in 'パスワード', with: '1234512345'
+      expect(page).to have_current_path root_path, ignore_query: true
+      expect(page).to have_content 'アカウント作成しました'
     end
   end
 
   context 'ログイン時' do
-    let!(:user) { create(:user, name: 'hakjae', password: '1234512345', password_confirmation: '1234512345') }
-
     before do
       sign_in user
     end

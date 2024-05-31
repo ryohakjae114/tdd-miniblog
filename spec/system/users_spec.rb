@@ -19,7 +19,7 @@ RSpec.describe 'Users', type: :system do
   end
 
   context 'ログイン時' do
-    let!(:user) { create(:user) }
+    let!(:user) { create(:user, name: 'hakjae', password: '1234512345', password_confirmation: '1234512345') }
 
     before do
       sign_in user
@@ -38,11 +38,16 @@ RSpec.describe 'Users', type: :system do
       expect(page).not_to have_button 'ログアウト'
     end
 
-    it '認証情報編集ボタンを押して、認証情報編集フォームが開くこと' do
+    it '認証情報編集ボタンを押して、認証情報編集フォームから人' do
       visit root_path
       click_on '認証情報編集'
       expect(page).to have_current_path edit_user_registration_path, ignore_query: true
-      # 認証情報の編集画面はインストールしてカスタマイズが必要
+      fill_in 'name', 'tajimax'
+      fill_in 'current_password', '1234512345'
+      click_on '更新'
+
+      visit edit_user_registration_path
+      expect(page).to have_field 'name', with: 'tajimax'
     end
 
     it 'アカウント削除を押してトップページに戻ること' do

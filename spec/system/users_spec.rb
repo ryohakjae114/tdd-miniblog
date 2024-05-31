@@ -20,10 +20,12 @@ RSpec.describe 'Users', type: :system do
       visit root_path
       expect(page).not_to have_button 'ログアウト'
       click_on 'サインアップ'
-      fill_in '名前', with: 'hakjae'
-      fill_in 'パスワード', with: '1234512345'
+      fill_in '名前', with: 'taji'
+      fill_in 'パスワード', match: :first, with: '1234512345'
+      fill_in 'パスワード（確認用）', with: '1234512345'
+      click_on 'Sign up'
       expect(page).to have_current_path root_path, ignore_query: true
-      expect(page).to have_content 'アカウント作成しました'
+      expect(page).to have_content 'アカウント登録が完了しました。'
     end
   end
 

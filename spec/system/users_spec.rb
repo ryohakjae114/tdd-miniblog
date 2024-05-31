@@ -11,7 +11,7 @@ RSpec.describe 'Users', type: :system do
       click_on 'ログイン'
       fill_in '名前', with: 'hakjae'
       fill_in 'パスワード', with: '1234512345'
-      click_on 'ログイン'
+      click_on 'Log in'
       expect(page).to have_current_path root_path, ignore_query: true
       expect(page).to have_content 'ログインしました'
     end
